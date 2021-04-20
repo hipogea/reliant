@@ -29,6 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            ['attribute'=>'universidad_id',
+                'filter'=> frontend\modules\inter\helpers\ComboHelper::getCboUniversidades(),
+               'value'=>function($model){
+                return $model->universidad->nombre;
+               }
+                ],
+            
             'codfac',
             'desfac',
             //'parametro',

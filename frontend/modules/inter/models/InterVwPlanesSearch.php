@@ -36,7 +36,7 @@ class InterVwPlanesSearch extends InterVwPlanes
            'desdocu', 
            'descrieval',
              'nombredepa',
-            'nombrecarrera',
+            'nombrecarrera','orden'
             
                 
                 ], 'safe'],
@@ -89,7 +89,7 @@ class InterVwPlanesSearch extends InterVwPlanes
              'etapa_id' => $this->etapa_id,
              'codocu' => $this->codocu,
             'codperiodo' => $this->codperiodo,
-            //'secuencia' => $this->secuencia,
+            'orden' => $this->orden,
            
         ]);
 

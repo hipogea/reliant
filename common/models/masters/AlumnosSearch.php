@@ -1,7 +1,7 @@
 <?php
 
 namespace common\models\masters;
-
+use common\helpers\h;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\masters\Combovalores;
@@ -55,6 +55,50 @@ class AlumnosSearch extends Alumnos
             return $dataProvider;
         }
 
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+        ]);
+
+        $query->andFilterWhere(['like', 'ap', $this->ap])
+              ->andFilterWhere(['like', 'am', $this->am])
+              ->andFilterWhere(['universidad_id'=> $this->universidad_id])
+              ->andFilterWhere(['facultad_id'=> $this->facultad_id])
+              ->andFilterWhere(['carrera_id'=> $this->carrera_id])
+              ->andFilterWhere(['tipodoc'=>$this->tipodoc])
+              ->andFilterWhere(['codpais'=>$this->codpais])
+              ->andFilterWhere(['like', 'nombres', $this->nombres])
+              ->andFilterWhere(['like', 'codalu', $this->codalu])
+              ->andFilterWhere(['like', 'numerodoc', $this->numerodoc]);
+
+        return $dataProvider;
+    }
+    
+     public function searchByExternal($params)
+    {
+        $query = Alumnos::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        /*
+         * FILTRO DURO PARA ALUMNOS EXTERNO
+         */
+        $current_university_id=h::currentUniversity();
+        $query->andWhere(['<>','universidad_id',$current_university_id]);
+        
+        
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,

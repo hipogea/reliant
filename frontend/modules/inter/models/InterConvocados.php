@@ -639,7 +639,7 @@ private function enviaMailConfirmando(){
      $mailer = new \common\components\Mailer();
         $message =new \common\components\MessageMail();
             $message->setSubject('Confirmación de Ingreso')
-            ->setFrom(['hipogea@hotmail.com'=>'Internacional'])
+            ->setFrom([h::gsetting('mail','userservermail')=>'Internacional'])
             ->setTo('hipogea@hotmail.com'/*$this->postulante->mailAddress()*/)           
             ->SetHtmlBody("Buenas Tardes <br>"
                     . "La presente es Confirmar que has sido admitido  "
@@ -698,10 +698,20 @@ public function isAdmitido(){
 }
 
 public function isInFinalStage(){
-   return InterEtapas::findOne($this->rawCurrentStage())->esfinal;
+   ///var_dump($this->rawCurrentStage(),InterEtapas::findOne($this->rawCurrentStage())->id);die();
+   return InterEtapas::find()->andWhere([
+       'programa_id'=>m::currentPrograma(),
+       'modo_id'=>$this->modo_id,
+       'orden'=>$this->rawCurrentStage()
+   ])->one()->esfinal;
 }
 
 public function isHabilToIngresar(){
+   /* var_dump(!$this->hasExpedientesPendientes(),
+             !$this->isEliminado(),
+            $this->isInFinalStage(),
+            !$this->isAdmitido()
+            );die();*/
    return  (!$this->hasExpedientesPendientes() && !$this->isEliminado() && 
       $this->isInFinalStage() && !$this->isAdmitido());
 }
@@ -758,4 +768,19 @@ public function IsOwner(){
    
 }
  
+
+public function mainEvaluator(){
+   $carrera_id= $this->postulante->campoCarrera();
+   $programa_id=$this->programa->id;
+   $departamento_id=h::gsetting('inter','dep_internacional_id');
+   return InterEvaluadores::find()->select()->andWhere([
+       'carrera_id'=>$carrera_id,
+       'programa_id'=>$programa_id,
+       'departamento_id'=>$departamento_id,
+   ])->one();
+   
+}
+        
+
+
 }

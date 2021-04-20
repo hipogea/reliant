@@ -44,7 +44,7 @@ alumnoAsset::register($this);
        }
        ?>    
         <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-             
+              <?php IF(!$isAdmitido){   ?> 
               <div  class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <?php 
                echo \common\widgets\imagerenderwidget\imageRenderWidget::widget([
@@ -81,7 +81,7 @@ alumnoAsset::register($this);
            </div>
            
        </div>
-    
+      <?php }  ?>
        <!-- CONDICION PARA VER AUN NO ESTA ADMITIDO -->
       <?php IF(!$isAdmitido){   ?>
     
@@ -95,16 +95,19 @@ alumnoAsset::register($this);
 
 $etapas=$convocatoria->modo->getEtapas()->orderBy(['orden'=>SORT_ASC])->asArray()->all();
 $steps=[];
+//var_dump($etapas);die();
 foreach($etapas as $etapa){
     $steps[$etapa['orden']]=[  'title' => $etapa['descripcion'],
                 'icon' => 'fa fa-'.$etapa['awe'],
-                'content' =>'<h4>'.$etapa['descripcion'].'</h4><br><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-info">'.$etapa['comentarios'].'</div>'.$this->render('_etapa_'.$etapa['orden'],
+                'content' =>'<h4>'.$etapa['descripcion'].'</h4><br><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-info">'.$etapa['comentarios'].'</div>'.
+        $this->render('_etapa_'.$etapa['orden'],
                                 [
                                     'identidad'=>$identidad,
                                     'convocatoria'=>$convocatoria,
+                                    'esFinal'=>($etapa['esfinal']=='1')?true:false,
                                 ]
                      
-                                         ),
+                    ),
              ];
 }
 
@@ -144,29 +147,31 @@ $wizard_config = [
 ?>
         <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-gray-light">
           <?= \drsdre\wizardwidget\WizardWidget::widget($wizard_config); ?>  
+          
         </div>
-      
+   
 <?PHP  } else{ ?>
       
     <?php $this->registerCssFile($this->registerCssFile(
             '/frontend/views/layouts/perfiles/css/welcome-inter.css',
-            ['depends' => [yii\bootstrap\BootstrapAsset::className()],
+            ['depends' => [
+                yii\bootstrap\BootstrapAsset::className(),
+                alumnoAsset::className(),
+                frontend\views\skins\apariencia_1\AdminLteAsset::className()
+                
+                ],
                 'media' => 'print',
                       ], 'css-print-theme'));
      ?>
 <!-- NUEVO CSS -->
-<link rel="stylesheet" href="css/welcome-inter.css">
+
 
 
 
     <!-- Primer contenedor -->
     <div class="container-fluid">
         <div class="row cab_user">
-            <div class="col-md-6 centrav">
-                <div class="nom_user">
-                    <i class="fa fa-user" aria-hidden="true"></i><?= $identidad->fullName() ?>
-                </div>    
-            </div>
+            
             <div class="col-lg-6 col-md-6 col-sm-6 text-right">
                 <?=Html::img("@frontend/web/img/modules/inter/welcome/images/logo-inter.svg",[])?>
                 

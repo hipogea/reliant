@@ -90,7 +90,7 @@
                 <p class="text-fuchsia"><?=m::t('labels','Add Universities to Apply')?></p>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <p>
-                        <?php $url= Url::to(['modal-new-opuniv','id'=>$model->id,
+                        <?php $url= Url::to(['/inter/convocados/modal-new-opuniv','id'=>$model->id,
                                              'gridName'=>'OpcionesUniversidad','idModal'=>'buscarvalor']);
                               echo Html::a('<span class="glyphicon glyphicon-plus"></span>',
                                            $url, ['class'=>'botonAbre btn btn-success btn-sm ']);

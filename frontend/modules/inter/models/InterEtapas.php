@@ -19,6 +19,7 @@ class InterEtapas extends \common\models\base\modelBase
     /**
      * {@inheritdoc}
      */
+   
     
     public $booleanFields=['esfinal'];
     
@@ -43,11 +44,12 @@ class InterEtapas extends \common\models\base\modelBase
     {
         return [
             [['programa_id', 'modo_id'], 'integer'],
-            [['descripcion'], 'required'],
+            [['descripcion','modo_id'], 'required'],
             [['comentarios'], 'string'],
              [['awe','orden','esfinal'], 'safe'],
             [['descripcion'], 'string', 'max' => 30],
             [['activo'], 'string', 'max' => 1],
+            // [['modo_id'], 'exist', 'skipOnError' => true, 'targetClass' => InterModos::className(), 'targetAttribute' => ['modo_id' => 'id']],
         ];
     }
 

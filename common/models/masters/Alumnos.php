@@ -57,7 +57,10 @@ implements \common\interfaces\postulantesInterface
     {
         return [
             [['codalu', 'ap','nombres','tipodoc','numerodoc','mail','universidad_id', 'facultad_id','carrera_id'], 'required'],
-             [['mail','universidad_id', 'facultad_id','carrera_id','hasuser' ], 'safe'],
+             [['mail','universidad_id', 
+                 'facultad_id','carrera_id','hasuser',
+                 'tipogrado','cicloactual','fecingreso','ftermino','nsemestres'
+                 ], 'safe'],
            [['codalu'], 'validateAccess'],//Verifica si un usuario puede editar o no el registro segun la universidad  
              [['codalu'], 'unique'],
               [['numerodoc'], 'validateDuplicado'],

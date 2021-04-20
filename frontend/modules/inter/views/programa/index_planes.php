@@ -98,6 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
           ['attribute'=>'ap',
                // 'group'=>true,
              ],
+          'descripcion',
          ['attribute'=>'modo_id',
              'filter'=> \frontend\modules\inter\helpers\ComboHelper::getCboModos(),
             'value'=>function($model){

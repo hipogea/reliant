@@ -459,7 +459,8 @@ class ConvocadosController extends baseController
    public function actionFillFicha($id){
       
         $model = $this->findModel($id);
-        $this->noAutorizado($model);
+        $this->noAutorizado($model); ///REGLA PARA EVITAR QUE OTRO ALUMNO
+        //INGRESE A PO MEDIO LA URL ID CON LE ID DE OTRO ALUM,NO
         $model->setScenario($model::SCENARIO_FICHA);
         $modelP=$model->postulante->persona;
          if($model->postulante->isExternal()){
@@ -557,8 +558,11 @@ class ConvocadosController extends baseController
           if(is_null($model)){
             throw new NotFoundHttpException(m::t('validaciones', 'Record with id {identidad} not found',['identidad'=>$id]));  
           }else{
-              if($model->aprove()){
-
+              if($model->isMandatoryAttachment() && !$model->hasAttachments()){
+                 return ['error'=>m::t('validaciones','There should be attachec files in this record')];  
+              }
+              if($model->aprove() ){
+                  
                 //$model->convocado->createExpedientes($model->convocado->currentStage());
                   return ['success'=>m::t('labels','File was aprobed')];
 
@@ -633,6 +637,8 @@ class ConvocadosController extends baseController
       
       $model = $this->findModel($id);
       
+       $this->noAutorizado($model); ///REGLA PARA EVITAR QUE OTRO ALUMNO
+      
       if(!h::request()->isAjax)
        //$model->createExpedientes($model->currentStage());
        /*if($model->hasCompletedStage($model->currentStage())){
@@ -686,7 +692,7 @@ class ConvocadosController extends baseController
                 //'ftermino'=>$model::SwichtFormatDate($fecha,$model::_FDATETIME,true),
                 'etapa_id'=>$model->etapa_id,
                 'plan_id'=>$model->plan_id,
-                'persona_id'=>$model->depa->persona->id,
+                'persona_id'=>$model->plan->eval->trabajador->persona->id,
                 'expediente_id'=>$model->id,
                 'modo_id'=>$model->modo_id,
                 'codigo'=>$model->convocado->postulante->code(),
@@ -786,7 +792,8 @@ class ConvocadosController extends baseController
   }
   
   public function actionIndexConvoDocentes(){
-      $modelPrograma= m::currentPrograma(false);
+      $modelPrograma= m::currentPrograma(true);
+     // var_dump($modelPrograma);die();
         if(is_null($modelPrograma))
             throw new NotFoundHttpException(m::t('validaciones', 'The requested page does not exist.'));
   

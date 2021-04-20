@@ -32,7 +32,7 @@
                                                             'title' => m::t('verbs', 'Update'), 
                                                             'data-pjax'=>'0'                                                                            
                                                         ];
-                                                        $url=Url::to(['update','id'=>$model->id]);
+                                                        $url=Url::to(['/maestros/default/update-alumnos','id'=>$model->alumno_id]);
                                                         return Html::a('<span class="btn btn-info btn-sm glyphicon glyphicon-pencil"></span>', $url, $options);
                                                     },
                                         'view' => function($url, $model)

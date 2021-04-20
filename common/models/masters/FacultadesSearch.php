@@ -18,7 +18,7 @@ class FacultadesSearch extends Facultades
     {
         return [
             
-            [['codfac', 'desfac'], 'safe'],
+            [['codfac', 'desfac','universidad_id'], 'safe'],
         ];
     }
 
@@ -56,9 +56,9 @@ class FacultadesSearch extends Facultades
             return $dataProvider;
         }
 
-       
-
+        $query->andFilterWhere(['universidad_id'=>$this->universidad_id]);
         $query->andFilterWhere(['like', 'desfac', $this->desfac])
+               ->andFilterWhere(['like', 'codfac', $this->desfac])
            ;
 
         return $dataProvider;

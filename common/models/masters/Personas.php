@@ -89,7 +89,7 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
     {
         return [
             [['ap',  'nombres','tipodoc','numerodoc','codgrupo'], 'required'],
-            [['identidad_id','codgrupo','provnac','distnac'], 'safe'],
+            [['identidad_id','codgrupo','provnac','distnac',], 'safe'],
             [['cumple'], 'validateFechas'],
             
             [['id','sexo', 'cumple','estcivil', 'pais', 'domicilio','telmoviles','telfijo'],'safe','on'=>self::SCE_UPDATE_MATRICULA],
@@ -266,6 +266,9 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
         return $this->hasOne(Personas::className(), ['codigoper' => 'codcontpaisresid']);
     }
     
+    /*
+     * Relación clave*
+     */
     public function getIdentidad() {
         //if($this->isNewRecord)return null;
         //var_dump($this->grupo->modelo::className());die();
@@ -285,9 +288,9 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
                     ['campo'=>$this->getAttributeLabel('fecingreso')]));
        }*/
       // if(self::CarbonNow()->diffInYears( $this->toCarbon('cumple')) < 18){
-       if($this->age() < 16){
-            $this->addError('cumple', yii::t('base_labels','Too young'));
-       }
+      // if($this->age() < 16){
+           // $this->addError('cumple', yii::t('base_labels','Too young'));
+      // }
         /*if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {*/
            
         /*}*/
@@ -379,6 +382,7 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
         /*En el caso de que no se den los parametros, sacarlos de
          * de la misma identidad  : Alumno, DOcente, Trabajador
          */
+        yii::error('La persona es '.$this->id,__FUNCTION__);
         if(is_null($username))
          $username=$this->identidad->numerodoc;
         if(is_null($email))
@@ -437,6 +441,7 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
 
    
     public function age(){
+       // var_dump($this->toCarbon('cumple'));die();
           return $this->toCarbon('cumple')->age; //no hay fecha de nacimiento
         }  
      

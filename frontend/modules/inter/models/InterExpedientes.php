@@ -82,7 +82,7 @@ class InterExpedientes extends \common\models\base\modelBase
             [['universidad_id', 'facultad_id', 'depa_id', 'programa_id', 'modo_id', 'convocado_id'], 'integer'],
             [['codocu'], 'required'],
             [['detalles', 'textointerno'], 'string'],
-            [['plan_id','orden','etapa_id','secuencia','iscurrent'], 'safe'],
+            [['plan_id','orden','etapa_id','secuencia','iscurrent','depa_id'], 'safe'],
             [['clase', 'status'], 'string', 'max' => 1],
             [['codocu'], 'string', 'max' => 3],
             [['fpresenta', 'fdocu'], 'string', 'max' => 10],
@@ -260,7 +260,7 @@ class InterExpedientes extends \common\models\base\modelBase
     }
     
     public function flagAttach(){
-        $tieneAdjunto=$this->hasAttachments();
+        $tieneAdjunto=$this->hasAttachments();//ojo
        $icono=(!$tieneAdjunto)?h::awe('folder-open'):h::awe('paperclip');
        $color=(!$tieneAdjunto)?'red':'green';
        if($tieneAdjunto)
@@ -486,5 +486,12 @@ private function setCurrent(){
     return $this->save();  
 }
 
-   
+public function isMandatoryAttachment(){
+    return ($this->etapa_id==2)?true:false;
+}
+
+public function isInterView(){
+   return ($this->codocu=='125');
+} 
+
 }

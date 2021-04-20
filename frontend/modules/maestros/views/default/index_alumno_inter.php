@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box box-success">
         <div class="box-body">
             <?php Pjax::begin(['id'=>'gridTraba']); ?>
-            <?php  echo $this->render('_search_alumno_inter', ['model' => $searchModel, 'modelPersona'=>$modelPersona]); ?>
+            <?php  echo $this->render('_search_alumno_inter', ['model' => $searchModel,/* 'modelPersona'=>$modelPersona*/]); ?>
             <p>
                  <?= Html::a(m::t('labels', 'Create Student International'), ['create-alumnos'], ['class' => 'btn btn-success']) ?>
             </p>
@@ -38,7 +38,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'codalu',
                         'ap',
                         'am',
-                        'nombres',                            
+                        'nombres', 
+                       ['attribute'=>'Convocado',
+                           'format'=>'raw',
+                            'value'=>function($model){
+                                return ($model->isConvocado())?yii::t('base_labels','YES'):yii::t('base_labels','NO');
+                            } 
+                            
+                            ],
                         [
                             'class'=>'yii\grid\ActionColumn',
                             'template'=>'{update}{delete}',

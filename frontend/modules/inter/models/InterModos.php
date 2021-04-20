@@ -6,6 +6,7 @@ use common\models\masters\Facultades;
 use common\models\masters\Departamentos;
 use common\models\masters\Periodos;
 use common\models\masters\Carreras;
+use common\helpers\h;
 use common\models\masters\Personas;
 use common\interfaces\postulantesInterface;
 use frontend\modules\inter\Module as m;
@@ -257,8 +258,9 @@ class InterModos extends \common\models\base\modelBase
    public function generateUsers(){
        //yii::error(__FUNCTION__);
        //yii::error($this->id);
-       foreach($this->convocados as $convocado){           
-           $convocado->persona->createUser();
+       foreach($this->convocados as $convocado){   
+           yii::error('El convocado es :'.$convocado->id,__FUNCTION__);
+           $convocado->persona->createUser(null,null,h::gsetting('inter','roleDefault'));
        }
    }
    

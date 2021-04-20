@@ -20,6 +20,13 @@ Thumbs.db
 # composer vendor dir
 /vendor
 
+
+# assets
+/frontend/web/assets
+
+
+
+
 # composer itself is not needed
 composer.phar
 
@@ -35,6 +42,7 @@ phpunit.phar
 /.vagrant
 
 # ignore generated files
+/common/config/main-local.php
 /frontend/web/index.php
 /frontend/web/index-test.php
 /frontend/web/robots.txt

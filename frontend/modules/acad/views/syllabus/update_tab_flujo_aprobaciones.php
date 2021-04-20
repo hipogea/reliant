@@ -71,6 +71,7 @@ use yii\widgets\Pjax;
                              
                             // return $model->id;
                              if($userId==$model->syllabus->docenteOwner->persona->profile->user->id){
+                                 
                                  $buton2='';
                                  
                              }else{

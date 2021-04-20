@@ -126,7 +126,7 @@ class InterExpedientesSearch extends InterExpedientes
         ])->andWhere(['<>','codocu','158'])->orderBy(['convocado_id'=>SORT_ASC,'orden'=>SORT_ASC]);
 
         
-///echo $query->createCommand()->rawSql;die();
+//echo $query->createCommand()->rawSql;
         return $dataProvider;
     }
     

@@ -132,6 +132,15 @@
         </div>
     
         <?php
+        
+        /*
+         * 
+         * CONDICION PARA VER SI ES EXERNO O ALUMNO LOCAL
+         * 
+         * 
+         */
+        
+        
             if (!$model->isExternal())    
             {                
         ?>
@@ -189,6 +198,9 @@
             }
             else
             {
+                /*
+                 * El alumno es externo 
+                 */
         ?>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">    
             <?= $form->field($modelPersona, 'lugarresidencia')->textInput(['maxlength' => true]) ?>
@@ -215,17 +227,39 @@
             <?= $form->field($modelPersona, 'parentcontpaisresid')->textInput(['maxlength' => true]) ?>
         </div>
 
-           
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">    
+            <?= $form->field($modelPersona, 'telpaisorigen')->textInput(['maxlength' => true]) ?>
+        </div>  
         
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">    
+            <?= $form->field($model, 'nsemestres')->textInput(['maxlength' => true]) ?>
+        </div> 
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">    
             <?= $form->field($modelPersona, 'polizaseguroint')->textInput(['maxlength' => true]) ?>
         </div>
 
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">    
             <?= $form->field($modelPersona, 'telefasistencia')->textInput(['maxlength' => true]) ?>
-        </div>   
+        </div>  
         
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">    
+            <?= $form->field($model, 'tipogrado')->textInput(['maxlength' => true]) ?>
+        </div> 
+        
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">    
+            <?= $form->field($model, 'fecingreso')->textInput(['maxlength' => true]) ?>
+        </div> 
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">    
+            <?= $form->field($model, 'ftermino')->textInput(['maxlength' => true]) ?>
+        </div> 
+        
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">    
+            <?= $form->field($modelPersona, 'domicilio')->label( m::t('labels','Local address'))->textInput(['maxlength' => true]) ?>
+        </div>
         <?php   
+        /*
+         * FIN DEL ALUMNO EXTENRO
+         */
             }
         ?>
         

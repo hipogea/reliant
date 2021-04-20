@@ -38,6 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         'ap',
                         'am',
                         'nombres',
+                       /* ['attribute'=>'Convocado',
+                           'format'=>'raw',
+                            'value'=>function($model){
+                                return ($model->isConvocado())?yii::t('base_labels','YES'):yii::t('base_labels','NO');
+                            } 
+                            
+                            ],*/
                         [
                             'attribute'=>'carrera_id',
                             //'format'=>'raw',

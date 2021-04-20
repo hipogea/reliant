@@ -59,7 +59,15 @@ use common\widgets\linkajaxgridwidget\linkAjaxGridWidget;
             //'valor1',
             //'valor2',
 
-            
+            [
+           
+            'attribute' => 'audit',
+           'format'=>'raw',
+            //'width' => '310px',
+            'value'=>function($model){
+               return common\widgets\auditwidget\auditWidget::widget(['model'=>$model]);                    
+            }
+                      ],    
         ],
     ]); ?>
     

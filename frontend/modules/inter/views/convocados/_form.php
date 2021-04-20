@@ -46,12 +46,7 @@
                 ?>
       
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <?= $form->field($model, 'depa_id')->
-                           label(m::t('labels','Departament'))->
-                           textInput(['value'=>$model->depa->nombredepa,'disabled'=>true])
-                ?>      
-            </div> 
+          
             <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
                 <?= $form->field($model, 'alumno_id')->
                            label(m::t('labels','Student'))->

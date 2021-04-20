@@ -1063,8 +1063,8 @@ class DefaultController extends \common\controllers\base\baseController
     
     public function actionIndexAlumnosInter()
     {        
-        $searchModel = new AlumnosInterSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new AlumnosSearch();
+        $dataProvider = $searchModel->searchByExternal(Yii::$app->request->queryParams);
 
         return $this->render('index_alumno_inter', 
                             [
