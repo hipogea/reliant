@@ -146,7 +146,7 @@ class FileHelper extends FileHelperOriginal {
                     );*/
    }
    
-   public function getUrlImageUserGuest(){
+   public static function  getUrlImageUserGuest(){
        $directorio=yii::getAlias('@common/web/img').DIRECTORY_SEPARATOR;
        if(!is_dir($directorio))
          throw new \yii\base\Exception(Yii::t('base_errors', 'The  \''.$directorio.'\' Directory doesn\'t exists '));

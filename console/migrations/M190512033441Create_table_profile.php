@@ -28,8 +28,8 @@ class M190512033441Create_table_profile extends  baseMigration
             'names' => $this->string(60)->append($this->collateColumn()),
             'photo' => $this->text()->append($this->collateColumn()),
             'detalle'=>$this->text()->append($this->collateColumn()),
-             'tipo'=>$this->char(3)->notNull()->append($this->collateColumn()),
-              'recexternos'=>$this->char(1)->notNull()->append($this->collateColumn()),
+             'tipo'=>$this->char(3)->append($this->collateColumn()),
+              'recexternos'=>$this->char(1)->append($this->collateColumn()),
       
             ],
            $this->collateTable());

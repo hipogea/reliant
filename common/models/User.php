@@ -269,6 +269,7 @@ public static function dataComboStatus(){
   }
    */
 public function afterSave($insert, $changedAttributes) {
+    
     parent::afterSave($insert, $changedAttributes);
     \common\models\Profile::firstOrCreateStatic(
             ['user_id'=>$this->id],
