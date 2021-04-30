@@ -362,11 +362,11 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
     
     public function afterSave($insert, $changedAttributes) {
         if($insert){
-            $this->refresh();
+            //$this->refresh();
             //VAR_DUMP($this->id);DIE();
-            $this->grupo->
+            /*$this->grupo->
             modelo::UpdateAll(['persona_id'=>$this->id],
-                    ['id'=>$this->identidad_id]);
+                    ['id'=>$this->identidad_id]);*/
         }else{
             
         }
