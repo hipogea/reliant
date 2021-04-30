@@ -89,7 +89,7 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
     {
         return [
             [['ap',  'nombres','tipodoc','numerodoc','codgrupo'], 'required'],
-            [['identidad_id','codgrupo','provnac','distnac',], 'safe'],
+            [['identidad_id','codgrupo','provnac','distnac','correo'], 'safe'],
             [['cumple'], 'validateFechas'],
             
             [['id','sexo', 'cumple','estcivil', 'pais', 'domicilio','telmoviles','telfijo'],'safe','on'=>self::SCE_UPDATE_MATRICULA],

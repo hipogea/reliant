@@ -113,6 +113,9 @@ use frontend\modules\maestros\MaestrosModule as m;
     <?= $form->field($model, 'telfijo')->textInput(['maxlength' => true]) ?>
 </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <?= $form->field($model, 'correo')->textInput(['maxlength' => true]) ?>
+</div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
     <?= $form->field($model, 'telmoviles')->textInput(['maxlength' => true]) ?>
 </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">

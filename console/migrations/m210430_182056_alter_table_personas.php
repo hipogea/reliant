@@ -1,6 +1,6 @@
 <?php
   use console\migrations\baseMigration;
-class m210430_182056_alter_table_personas extends Migration
+class m210430_182056_alter_table_personas extends baseMigration
 {
    const NAME_TABLE='{{%personas}}';
     //const NAME_TABLE_PERSONAS='{{%personas}}';
