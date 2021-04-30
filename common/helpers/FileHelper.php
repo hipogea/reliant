@@ -113,7 +113,7 @@ class FileHelper extends FileHelperOriginal {
      * 
      * 
      */
-    private function preparePathForFindModels($path){
+    private static function  preparePathForFindModels($path){
        $path=trim($path);
         $path=(StringHelper::startsWith($path,'\\'))?substr($path,1):$path;
         $path=(StringHelper::startsWith($path,'/'))?substr($path,1):$path;
@@ -281,7 +281,7 @@ public function isPdf($filePath){
    return (self::extensionFile($filePath)=='pdf');
 }
 
-public function UrlImage($path,$internal=true){
+public static function UrlImage($path,$internal=true){
  if(is_file($path)){
     /* echo " path  : ".$path; echo "<br>";
      echo " path  alias root  : ".yii::getAlias('@root')."<br>";
