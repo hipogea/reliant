@@ -108,15 +108,7 @@ $this->title = 'Profile';
          </diV>  
              
              
-             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-               <?= $form->field($profile, 'universidad_id')->
-            dropDownList(\frontend\modules\inter\helpers\ComboHelper::getCboUniversidades(),
-                  ['prompt'=>'--'.yii::t('base_verbs','Choose a Value')."--",
-                    // 'class'=>'probandoSelect2',
-                      //'disabled'=>($model->isBlockedField('codpuesto'))?'disabled':null,
-                        ]
-                    ) ?>
-         </diV>     
+                
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                <?= $form->field($profile, 'idioma')->
             dropDownList(['es_PE'=>'Español','en_US'=>'Inglés'],

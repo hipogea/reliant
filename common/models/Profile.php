@@ -74,7 +74,7 @@ class Profile extends \common\models\base\modelBase implements \common\interface
         return [
             [['user_id'], 'integer'],
              //[['idioma'], 'required'],
-            [['url','persona_id','universidad_id','multiple_universidad','idioma'], 'safe'],
+            [['url','persona_id','multiple_universidad','idioma'], 'safe'],
 
             // ['codtra', 'unique', 'targetAttribute' => ['user_id','codtra']],
             [['user_id','codtra'], 'unique', 'targetAttribute' =>'codtra' ],
@@ -83,7 +83,7 @@ class Profile extends \common\models\base\modelBase implements \common\interface
             [['names'], 'string', 'max' => 60],
              
              [['names','duration','durationabsolute','url','codtra','recexternos'], 'safe'],
-            [['universidad_id'],'required','on'=>self::SCENARIO_INTERLOCUTOR],
+           // [['universidad_id'],'required','on'=>self::SCENARIO_INTERLOCUTOR],
             //[['persona_id'],'safe','on'=>self::SCENARIO_INTERLOCUTOR],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
