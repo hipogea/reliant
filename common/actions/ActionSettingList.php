@@ -105,10 +105,13 @@ class ActionSettingList extends Action
      */
     public function init()
     {
+        
        // var_dump($this->seccion);
         parent::init();
+        
        if ($this->seccion === null) {
-            throw new InvalidConfigException('The "seccion" property must be set.');
+           $this->seccion=Yii::$app->controller->module->id;
+            //throw new InvalidConfigException('The "seccion" property must be set.');
         }
         
     }
@@ -120,26 +123,25 @@ class ActionSettingList extends Action
      */
     public function run()
     {
-        $searchModel = Yii::createObject($this->searchClass);
-        
-        
+        $searchModel = Yii::createObject($this->searchClass);        
+        //$moduleid=Yii::$app->controller->module->id; 
         $params= Yii::$app->request->queryParams;
-        $params[
-        FileHelper::getShortName(get_class($searchModel))
-        ]['section']=$this->seccion;
-                
-                
-       // var_dump(Yii::$app->request->queryParams);die();
+        $clase=FileHelper::getShortName(get_class($searchModel));
+        /*if(array_key_exists($clase, $params)){
+          if(!array_key_exists('section', $params[$clase]))
+        $params[$clase]['section']=$this->seccion;  
+        }*/
+       // if(!array_key_exists($clase, $params)){
+        $params[$clase]['section']=$this->seccion;
+        //}
+        //var_dump($params);die();
         $dataProvider = $searchModel->search($params);
-
-        return $this->controller->render($this->nameView,
+        return $this->controller->render('@frontend/views/comunes/settings',
                 [   'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
                      'seccion'=>$this->seccion,
                 ]
                 );
-
-        
     }
 
    

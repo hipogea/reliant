@@ -248,6 +248,8 @@ class h {
            'M'=> yii::t('base_names','Mass'),
            'T'=> yii::t('base_names','Time'),          
             'V'=> yii::t('base_names','Volume'),
+           //'J'=> yii::t('base_names','Energy'),
+          // 'W'=> yii::t('base_names','Power'),
            
        ];
    } 

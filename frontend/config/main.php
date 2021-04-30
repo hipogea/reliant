@@ -15,7 +15,10 @@ return [
      * // change target language to Chinese
         \Yii::$app->language = 'zh-CN';
      */
-    'language' => 'es-PE',
+    'language' => 'en-US',
+    
+    // set source language to be English
+    'sourceLanguage' => 'en-US',
     'name'=>'Plataforma FCCTP-USMP',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
@@ -78,12 +81,18 @@ return [
     ],
     'modules' => [
         
-        
-        'acad' => [
+       
+   'treemanager' =>  [
+        'class' => '\kartik\tree\Module',
+        // other module settings, refer detailed documentation
+    ],
+      /*  'acad' => [
             'class' => 'frontend\modules\acad\Module',
             
+        ],*/
+        'bigitems' => [
+            'class' => 'frontend\modules\bigitems\Module',
         ],
-        
         
         'maestros' => [
             'class' => 'frontend\modules\maestros\MaestrosModule',
@@ -93,12 +102,12 @@ return [
             'class' => 'frontend\modules\import\ModuleImport',
         ],
       
-        'regacad' => [
+        /*'regacad' => [
             'class' => 'frontend\modules\regacad\Module',
             ],
         'repositorio' => [
             'class' => 'frontend\modules\repositorio\Module',
-            ],
+            ],*/
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',

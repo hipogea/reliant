@@ -78,6 +78,7 @@
   background-size: 90%;
   width: 100%;
   max-width: 420px;
+  opacity:0.72;
 }
 
 @media (min-width: 321px) and (max-width: 480px) {

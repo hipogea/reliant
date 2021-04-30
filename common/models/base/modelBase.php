@@ -967,9 +967,10 @@ class modelBase extends \yii\db\ActiveRecord
                           $this->prefijo="";
              }
               
-                                
+                              
         $maximus=self::maxValue($field,$campocriterio);
-        if(is_null($maximus) or empty($maximus)){           
+        if(is_null($maximus) or empty($maximus)){  
+            //VAR_DUMP($this->prefijo);  die();
             $maximus=1;
              return $this->prefijo.str_pad($maximus,$tamano,'0',STR_PAD_LEFT);
              }else{

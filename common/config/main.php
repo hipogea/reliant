@@ -151,8 +151,11 @@ return [
         // 'downloadAction' => 'gridview/export/download',
         // 'i18n' => []
         ],
-        'inter' => [
+       /* 'inter' => [
             'class' => 'frontend\modules\inter\Module',
+        ],*/
+         'asset' => [
+            'class' => 'frontend\modules\asset\Module',
         ],
         'settings' => [
             'class' => 'yii2mod\settings\Module',

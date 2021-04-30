@@ -86,12 +86,15 @@ return [
         'migrate-modules' => [
            'class' => 'yii\console\controllers\MigrateController',
             'migrationNamespaces' => [
-                'frontend\modules\inter\database\migrations',
+                //'frontend\modules\inter\database\migrations',
                 'frontend\modules\import\database\migrations',
                 'frontend\modules\report\database\migrations',
-                'frontend\modules\regacad\database\migrations',
-                'frontend\modules\repositorio\database\migrations',
-                'frontend\modules\acad\database\migrations',
+                //'frontend\modules\regacad\database\migrations',
+               // 'frontend\modules\repositorio\database\migrations',
+                //'frontend\modules\acad\database\migrations',
+                'frontend\modules\maestros\database\migrations',
+                 'frontend\modules\bigitems\database\migrations',
+               'frontend\modules\asset\database\migrations',
                // 'backend\modules\base\database\migrations',
                 
                 ],
