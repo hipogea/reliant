@@ -42,7 +42,7 @@ if(!$this->existsTable($table)) {
         ],$this->collateTable());
              
     
-  	 $this->addForeignKey($this->generateNameFk($table), $table,
+  	/* $this->addForeignKey($this->generateNameFk($table), $table,
               'codcen', static::NAME_TABLE_CENTROS,'codcen');
                   $this->addForeignKey($this->generateNameFk($table), $table,
               'ptopartida_id', static::NAME_TABLE_DIRECCIONES,'id');
@@ -54,7 +54,7 @@ if(!$this->existsTable($table)) {
               'codpro_tran', static::NAME_TABLE_CLIPRO,'codpro');
                     $this->addForeignKey($this->generateNameFk($table), $table,
               'codocu', static::NAME_TABLE_DOCUMENTOS,'codocu');
-            }
+            }*/
             
              $this->putCombo($table, 'codmotivo', 'ALQUILER');
          $this->putCombo($table, 'essalida', 'INGRESO');
