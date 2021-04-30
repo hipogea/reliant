@@ -60,6 +60,7 @@ if(!$this->existsTable($table)) {
          $this->putCombo($table, 'essalida', 'INGRESO');
          $this->putCombo($table, 'codestado', 'CREADO');
  }
+    }
 
 public function safeDown()
     {
