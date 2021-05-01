@@ -102,7 +102,7 @@
   </div>
     <?php 
    echo linkAjaxGridWidget::widget([
-           'id'=>'widgetgridBancos',
+           'id'=>'gridTraba',
             'idGrilla'=>'gridTraba',
             'family'=>'holas',
           'type'=>'POST',
