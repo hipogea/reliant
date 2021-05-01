@@ -81,7 +81,7 @@
                         return \yii\helpers\Html::a(
                                 '<span class="btn btn-warning glyphicon glyphicon-user"></span>',
                                 '#',
-                                ['family'=>'holas','title'=>$url]
+                                ['family'=>'holas','title'=>$url,'id'=>$model->id]
                                 );
                      },       
                              
