@@ -1153,10 +1153,11 @@ die();
   }
   
   public function actionAddUserPerson($id){
+       if(h::request()->isAjax){
       $model=\common\models\masters\Personas::findOne($id);
       if(is_null($model))
        throw new NotFoundHttpException(Yii::t('base_errors', 'Record not found.'));  
-       if(h::request()->isAjax){
+      
           
          h::response()->format = \yii\web\Response::FORMAT_JSON;
        

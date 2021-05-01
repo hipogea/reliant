@@ -10,7 +10,9 @@
     $this->title = m::t('labels', 'Manage Persons');
     $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="trabajadores-index">
+ <?php  echo \common\widgets\spinnerWidget\spinnerWidget::widget();  ?>
     <h4><?=h::awe('users').h::space(10).Html::encode($this->title) ?></h4>
     <div class="box box-success">
         <div class="box-body">
