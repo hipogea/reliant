@@ -1152,7 +1152,7 @@ die();
      return $this->render('arbol');
   }
   
-  public function addUserPerson($id){
+  public function actionAddUserPerson($id){
       $model=\common\models\masters\Personas::findOne($id);
       if(is_null($model))
        throw new NotFoundHttpException(Yii::t('base_errors', 'Record not found.'));  
