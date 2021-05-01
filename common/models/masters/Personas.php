@@ -470,10 +470,10 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
    
   private function generateNameUser($numer=null){
       if(is_null($numer)){
-         $name= strtolower(substr($this->nombres,0,1).$this->ap());
+         $name= strtolower(substr($this->nombres,0,1).$this->ap);
          $numer=1;
       }else{
-         $name= strtolower(substr($this->nombres,0,1).$this->ap()).$numer; 
+         $name= strtolower(substr($this->nombres,0,1).$this->ap).$numer; 
           $numer+=1;
       }
       if(is_null(\common\models\User::findByUsername($name))){
