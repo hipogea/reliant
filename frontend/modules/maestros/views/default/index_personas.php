@@ -80,7 +80,7 @@
                         $url=\yii\helpers\Url::toRoute(['/site/add-user-person','id'=>$model->id]);
                         return \yii\helpers\Html::a(
                                 '<span class="btn btn-warning glyphicon glyphicon-user"></span>',
-                                $url,
+                                '#',
                                 ['family'=>'holas','title'=>$url]
                                 );
                      },       
