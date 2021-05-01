@@ -1151,4 +1151,21 @@ die();
   public function actionTree(){
      return $this->render('arbol');
   }
+  
+  public function addUserPerson($id){
+      $model=\common\models\masters\Personas::findOne($id);
+      if(is_null($model))
+       throw new NotFoundHttpException(Yii::t('base_errors', 'Record not found.'));  
+       if(h::request()->isAjax){
+          
+         h::response()->format = \yii\web\Response::FORMAT_JSON;
+       
+        if( $nameuser=$model->createUser()){
+            return ['success'=>yii::t('base_success','User account {usuario} was created successfully',['usuario'=>$nameuser])];
+        }else{
+           // $registro->setHomeUrl();
+            return ['error'=>yii::t('base_errors','There were problems')]; 
+        }
+      }
+  }
 }

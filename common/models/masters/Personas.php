@@ -102,6 +102,10 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
              [['tipodoc','numerodoc'], 'unique','targetAttribute'=>['tipodoc','numerodoc']],
             [['telfijo'], 'string', 'max' => 13],
             [['telmoviles', 'referencia'], 'string', 'max' => 30],
+            [['mail'],'unique'],
+            //["mail", "unique", "targetClass" => Alumnos::className(), "targetAttribute" => "mail"],
+            ["mail", "unique", "targetClass" => \common\models\User::className(), "targetAttribute" => "email"],
+             
             
             
             
@@ -140,6 +144,7 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
             'ap' => yii::t('base_labels', 'Last Name'),
             'am' => yii::t('base_labels', "Mother Last Name"),
             'nombres' => yii::t('base_labels', 'Names'),
+             'correo' => yii::t('base_labels', 'E-mail'),
             'tipodoc' => yii::t('base_labels', 'Document Type'),
            
             'numerodoc' => yii::t('base_labels', 'Document Number'),
@@ -382,15 +387,19 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
         /*En el caso de que no se den los parametros, sacarlos de
          * de la misma identidad  : Alumno, DOcente, Trabajador
          */
-        yii::error('La persona es '.$this->id,__FUNCTION__);
+       // yii::error('La persona es '.$this->id,__FUNCTION__);
         if(is_null($username))
-         $username=$this->identidad->numerodoc;
-        if(is_null($email))
-         $email= strtolower ($this->identidad->mailAddress());
+         $username=$this->generateNameUser();
+        if(is_null($email)){
+           if(empty($this->correo)) return false;
+         $email= strtolower ($this->correo);
+         
+         
+        }
         
         
         $user=new \common\models\User();
-            $user->username= strtoupper($username);
+            $user->username= $username;
              $user->email=$email; 
              $pwd=$username; 
              $user->password=  $pwd.'123'; 
@@ -410,9 +419,9 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
                 $user->profile->linkPerson($this->id);
                 /*
                 $idUNI=$this->identidad->universidad_id;*/
-                $idUNI=h::currentUniversity();
-                if($idUNI> 0) //siempre que su identidad tenga asdinagda la universidad 
-                $user->profile->linkUniversity($idUNI);
+               // $idUNI=h::currentUniversity();
+                //if($idUNI> 0) //siempre que su identidad tenga asdinagda la universidad 
+               // $user->profile->linkUniversity($idUNI);
                  //yii::error('resolviendo el roill '.$id ,__FUNCTION__);
                 $role=(!is_null($role))?$role:h::gsetting('general','roleDefault');
                 $rol=\Yii::$app->authManager->getRole($role);
@@ -458,5 +467,23 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
            return false;
        }
    } 
+   
+  private function generateNameUser($numer=null){
+      if(is_null($numer)){
+         $name= strtolower(susbtr($this->nombres,0,1).$this->ap());
+         $numer=1;
+      }else{
+         $name= strtolower(susbtr($this->nombres,0,1).$this->ap()).$numer; 
+          $numer+=1;
+      }
+      if(is_null(\common\models\User::findByUsername($name))){
+          return $name;
+      }else{
+          return $this->generateNameUser($numer);
+      }
+  }
+  
+  
+  
      
 }

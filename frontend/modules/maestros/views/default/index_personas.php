@@ -64,7 +64,7 @@
             //'referencia',
 
             ['class' => 'yii\grid\ActionColumn',
-                'template'=>'{update}{view}',
+                'template'=>'{update}{view}{user}',
                 'buttons'=>[
                     'update'=>function($url,$model){
                         $url=\yii\helpers\Url::toRoute(['update-persona','id'=>$model->id]);
@@ -74,6 +74,15 @@
                                 ['data-pjax'=>'0']
                                 );
                      },
+                      'user'=>function($url,$model){
+                        $url=\yii\helpers\Url::toRoute(['/site/add-user-person','id'=>$model->id]);
+                        return \yii\helpers\Html::a(
+                                '<span class="btn btn-warning glyphicon glyphicon-user"></span>',
+                                $url,
+                                ['family'=>'holas','title'=>$url]
+                                );
+                     },       
+                             
                      'view'=>function($url,$model){
                         $url=\yii\helpers\Url::toRoute(['view-persona','id'=>$model->id]);
                         return \yii\helpers\Html::a(
