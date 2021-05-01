@@ -16,12 +16,12 @@
     <h4><?=h::awe('users').h::space(10).Html::encode($this->title) ?></h4>
     <div class="box box-success">
         <div class="box-body">
-            <?php Pjax::begin(['id'=>'gridTraba']); ?>
+            
             <?php  echo $this->render('_search_personas', ['model' => $searchModel]); ?>
 
  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
    .
-
+    <?php Pjax::begin(['id'=>'gridTraba','timeout'=>false]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
