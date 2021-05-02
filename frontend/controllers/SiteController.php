@@ -1160,12 +1160,12 @@ die();
       
           
          h::response()->format = \yii\web\Response::FORMAT_JSON;
-       
+       //var_dump($model->createUser());die();
         if( $nameuser=$model->createUser()){
-            return ['success'=>yii::t('base_success','User account {usuario} was created successfully',['usuario'=>$nameuser])];
+            return ['success'=>yii::t('base_success','User account {usuario} was created successfully',['usuario'=>$nameuser->username])];
         }else{
            // $registro->setHomeUrl();
-            return ['error'=>yii::t('base_errors','There were problems')]; 
+            return ['error'=>$model->firstError]; 
         }
       }
   }

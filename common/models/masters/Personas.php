@@ -391,7 +391,10 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
         if(is_null($username))
          $username=$this->generateNameUser();
         if(is_null($email)){
-           if(empty($this->correo)) return false;
+           if(empty($this->correo)){
+               $this->addError('id',yii::t('base_errors','The mail account is empty for this person'));
+               return false;
+           }
          $email= strtolower ($this->correo);
          
          
@@ -408,9 +411,12 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
              //$model->retypePassword='123456'; 
                $user->status=\mdm\admin\models\User::STATUS_ACTIVE;
             if (!$user->save()) {
+                 $this->addError('id',yii::t('base_errors','There were problems: {problem}',['problem'=>$user->firstError]));
+              
                 //var_dump($user->getErrors());DIE();
                 // yii::error(' no grabo el user',__FUNCTION__);
-                                return NULL;
+                
+                                return false;
              }else{
                  //yii::error(' si grabo el user',__FUNCTION__);
                  $user->refresh();
@@ -432,9 +438,10 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
                  $user->id); 
                   //var_dump($vari);die();
                 }else{
-                    
+                   $this->addError('id',yii::t('base_errors','Value for \'roleDefault\' in parameters settings is empty'));
+               
                 }
-                    
+                   
                 
                 return $user;
                 /************************/
