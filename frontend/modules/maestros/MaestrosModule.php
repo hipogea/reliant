@@ -27,7 +27,7 @@ class MaestrosModule extends \yii\base\Module
     }
     
     private static function putSettingsModule(){
-         //h::getIfNotPutSetting('mail','servermail',"smtp.googlemail.com", SettingType::STRING_TYPE);
+         h::getIfNotPutSetting('general','roleDefault',"r_baseUser", SettingType::STRING_TYPE);
           
         }
     
