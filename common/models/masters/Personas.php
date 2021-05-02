@@ -430,6 +430,10 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
                // $user->profile->linkUniversity($idUNI);
                  //yii::error('resolviendo el roill '.$id ,__FUNCTION__);
                 $role=(!is_null($role))?$role:h::gsetting('general','roleDefault');
+                if(is_null($role)){
+                    $this->addError('id',yii::t('base_errors','Value for \'roleDefault\' in parameters settings is empty'));
+                     return false;
+                }
                 $rol=\Yii::$app->authManager->getRole($role);
                 /****LE ASIGNA EL ROL */
                 if(!is_null($rol)){
