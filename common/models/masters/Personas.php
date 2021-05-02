@@ -410,6 +410,21 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
             // yii::error($user->username.'@'.$pwd);
              //$model->retypePassword='123456'; 
                $user->status=\mdm\admin\models\User::STATUS_ACTIVE;
+               
+               
+               $role=(!is_null($role))?$role:h::gsetting('general','roleDefault');
+                if(is_null($role)){
+                    $this->addError('id',yii::t('base_errors','Value for \'roleDefault\' in parameters settings is empty'));
+                     return false;
+                } 
+                $rol=\Yii::$app->authManager->getRole($role);
+                if(is_null($rol)){
+                  
+                $this->addError('id',yii::t('base_errors','Value for \'roleDefault\' in parameters settings is empty'));
+               
+                    return false;
+                   
+                }
             if (!$user->save()) {
                  $this->addError('id',yii::t('base_errors','There were problems: {problem}',['problem'=>$user->firstError]));
               
@@ -429,22 +444,15 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
                 //if($idUNI> 0) //siempre que su identidad tenga asdinagda la universidad 
                // $user->profile->linkUniversity($idUNI);
                  //yii::error('resolviendo el roill '.$id ,__FUNCTION__);
-                $role=(!is_null($role))?$role:h::gsetting('general','roleDefault');
-                if(is_null($role)){
-                    $this->addError('id',yii::t('base_errors','Value for \'roleDefault\' in parameters settings is empty'));
-                     return false;
-                }
+               
                 $rol=\Yii::$app->authManager->getRole($role);
                 /****LE ASIGNA EL ROL */
-                if(!is_null($rol)){
+               
                   $vari= Yii::$app->authManager->assign(
                  $rol,
                  $user->id); 
                   //var_dump($vari);die();
-                }else{
-                   $this->addError('id',yii::t('base_errors','Value for \'roleDefault\' in parameters settings is empty'));
-               
-                }
+                
                    
                 
                 return $user;
