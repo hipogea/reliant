@@ -2,6 +2,7 @@
 
 namespace frontend\modules\maestros;
 use yii;
+use common\helpers\h;
 /**
  * maestros module definition class
  */
