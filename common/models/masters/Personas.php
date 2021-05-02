@@ -426,7 +426,7 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
                    
                 }
             if (!$user->save()) {
-                 $this->addError('id',yii::t('base_errors','There were problems: {problem}',['problem'=>$user->firstError]));
+                 $this->addError('id',yii::t('base_errors','There were problems: {problem}',['problem'=>$user->errorSummary[0]]));
               
                 //var_dump($user->getErrors());DIE();
                 // yii::error(' no grabo el user',__FUNCTION__);
