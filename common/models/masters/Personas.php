@@ -102,9 +102,9 @@ class Personas extends modelBase implements \common\interfaces\PersonInterface
              [['tipodoc','numerodoc'], 'unique','targetAttribute'=>['tipodoc','numerodoc']],
             [['telfijo'], 'string', 'max' => 13],
             [['telmoviles', 'referencia'], 'string', 'max' => 30],
-            [['mail'],'unique'],
+            [['correo'],'unique'],
             //["mail", "unique", "targetClass" => Alumnos::className(), "targetAttribute" => "mail"],
-            ["mail", "unique", "targetClass" => \common\models\User::className(), "targetAttribute" => "email"],
+            ["correo", "unique", "targetClass" => \common\models\User::className(), "targetAttribute" => "email"],
              
             
             
