@@ -3,6 +3,8 @@
 namespace frontend\modules\maestros;
 use yii;
 use common\helpers\h;
+use yii2mod\settings\models\enumerables\SettingType;
+
 /**
  * maestros module definition class
  */
